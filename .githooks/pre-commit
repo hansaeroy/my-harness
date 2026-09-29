@@ -1,0 +1,4 @@
+#!/bin/sh
+set -eu
+node harness/scripts/check.mjs check-rules
+node --test harness/tests/*.test.mjs

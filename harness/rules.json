@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "provenanceLedger": "harness/decisions.md",
+  "artifactFormat": {
+    "metadataFence": "harness-json",
+    "schemaVersion": 1,
+    "sourceDecisionIds": ["D23", "D24"]
+  },
+  "figmaSnapshot": {
+    "sourceType": "figma-mcp-live",
+    "metadataTool": "mcp__codex_apps__figma_get_metadata",
+    "hashField": "metadata",
+    "sourceDecisionIds": ["D24", "D25"]
+  },
+  "gates": {
+    "G1": {
+      "artifact": "01-reference-analysis.md",
+      "referencesField": "references",
+      "minimumUniqueSites": 5,
+      "uniqueBy": "url.hostname",
+      "requiredReferenceFields": ["url", "layoutStructure", "mood", "applicationCandidate"],
+      "returnTo": "01-reference",
+      "sourceDecisionIds": ["D10", "D11"]
+    },
+    "G2": {
+      "screenSpecArtifact": "02-screen-spec.md",
+      "approvalArtifact": "02-concept-approval.md",
+      "figmaStateArtifact": "figma-state.json",
+      "screensField": "keyScreens",
+      "minimumScreens": 2,
+      "maximumScreens": 3,
+      "screenWidth": 390,
+      "screenHeight": 844,
+      "prohibitedFeatureIds": [
+        "market-exposure",
+        "buyer-flow",
+        "purchase-flow",
+        "payment-flow",
+        "settlement-flow",
+        "for-sale-state",
+        "suspended-state"
+      ],
+      "saleApplication": {
+        "allowedRoles": ["seller"],
+        "finalReviewStatus": "approved"
+      },
+      "approval": {
+        "requiredStatus": "approved",
+        "boundHashes": ["screenSpecSha256", "figmaMetadataSha256"],
+        "requiredFields": ["approvedBy", "approvedAt"]
+      },
+      "returnTo": "02-screen-design",
+      "sourceDecisionIds": ["D12", "D13", "D14", "D24", "D25"]
+    },
+    "G3": {
+      "reviewArtifact": "03-design-review.md",
+      "figmaStateArtifact": "figma-state.json",
+      "categories": ["color", "typography", "spacing", "radius", "components"],
+      "requiredEvidenceFields": ["checkedNodeIds", "designRuleRefs"],
+      "maximumViolations": 0,
+      "returnTo": "03-design",
+      "sourceDecisionIds": ["D15", "D24", "D25"]
+    }
+  },
+  "roles": {
+    "reference-researcher": "01-reference",
+    "screen-designer": "02-screen-design",
+    "design-builder": "03-design",
+    "judge": null
+  },
+  "sourceDecisionIds": ["D16", "D17", "D26"]
+}

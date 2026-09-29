@@ -1,0 +1,18 @@
+{
+  "description": "Codex 디자인 하네스의 단계별 편집 폴더 가드",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "^apply_patch$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node harness/scripts/guard.mjs",
+            "timeout": 10,
+            "statusMessage": "디자인 하네스 편집 경계 확인"
+          }
+        ]
+      }
+    ]
+  }
+}

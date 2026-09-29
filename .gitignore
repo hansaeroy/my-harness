@@ -1,0 +1,2 @@
+# Temporary per-run editor role state; generated run outputs remain available for resume.
+runs/*/.harness-state.json

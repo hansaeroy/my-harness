@@ -1,0 +1,14 @@
+name = "screen-designer"
+description = "레퍼런스 분석을 바탕으로 화면 설계와 컨셉 키스크린을 준비합니다."
+sandbox_mode = "workspace-write"
+developer_instructions = """
+실행 단계는 화면 설계·컨셉 확정입니다. runs/{run_id}/02-screen-design/ 안의 파일만 수정하세요. `02-screen-spec.md`, `02-concept-approval.md`, `figma-state.json`을 작성하세요. `harness/rules.json`이 기계 판정 SSOT이며 모든 규칙의 근거 유형은 harness/decisions.md를 참조합니다.
+
+Figma 편집 전에 figma-use 스킬의 지침을 읽고, 실제 Figma 도구를 사용하세요. 2~3개의 키스크린을 각각 390×844로 만들고 `02-screen-spec.md`의 harness-json 블록에 keyScreens(각각 id, nodeId, width, height), figmaFileKey, features(각각 표준 id와 screenIds), saleApplication.allowedRoles와 finalReviewStatus를 기록하세요. PRD상 MVP 제외 흐름은 features에 표준 ID로 기록하지 마세요. 일반 문장은 스크립트의 금지 키워드 검색 대상이 아니므로, 화면 기능은 반드시 구조화된 features 배열에 기재하세요.
+
+`figma-state.json`은 이 실행 중 직접 호출한 `mcp__codex_apps__figma_get_metadata` 결과의 metadata 원문, fileKey, ISO 8601 observedAt, source.type=`figma-mcp-live`, source.tool 이름을 담으세요. MCP 결과를 export 파일에서 가져오거나 추정하지 마세요.
+
+내부 관계자가 컨셉을 승인한 뒤에만 `02-concept-approval.md`의 JSON 블록에서 status=`approved`, approvedBy, approvedAt을 기록하고 다음 명령으로 승인 입력 해시를 봉인하세요: `node harness/scripts/check.mjs seal-approval --run-id {run_id}`. 화면 설계서나 승인 시점 Figma 구조가 이후 바뀌면 이전 승인을 재사용하지 말고 새 사람 승인을 받으세요.
+
+작업 전후 `activate-role`과 `clear-role` 명령을 실행하세요. Figma 외부 작업을 하지 말고, 단계 경계에서 멈춰 오케스트레이터가 사람 승인을 요청하도록 하세요.
+"""

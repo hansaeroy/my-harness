@@ -1,0 +1,10 @@
+{
+  "name": "huddling-design-harness",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node harness/scripts/check.mjs check-rules",
+    "test": "node --test harness/tests/*.test.mjs",
+    "install:git-hooks": "node harness/scripts/install-git-hooks.mjs"
+  }
+}
